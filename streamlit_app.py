@@ -1,119 +1,288 @@
 import streamlit as st
+import folium
 import pandas as pd
+import io 
+
+def dados():  
+    data = pd.read_excel('valor.xlsx')
+    st.header('Download Dados', divider='red')
+    st.dataframe(data)
+    if st.button('Solicitar dados'):
+        df = data.copy()
+        excel_buffer = io.BytesIO()
+        df.to_excel(excel_buffer, index=False, header=True)
+        excel_data = excel_buffer.getvalue()
+        st.download_button("Baixe os valores de 15 dias", excel_data, file_name='Dados_UCs.xlsx')
+    else:
+         st.warning("Sem dados para baixar")
+def Mapa():   
+    from streamlit_folium import st_folium  
+    st.header('Mapa das Unidades', divider='red')  
+    # Cria o mapa centralizado em uma localização específica
+    m = folium.Map(location=(-3.71839, -38.5434))
+
+    #! ULTRAPASSADOS
+
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.7997058197269378, -40.25621828676672],
+        tooltip="1017401",
+        popup="ETA - FORQUILHA",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+    folium.Marker(
+        location=[-5.463787529458468, -40.78005110289483],
+        tooltip="9009221",
+        popup="ETA - NOVO ORIENTE",
+        icon=folium.Icon(icon="fire", color='red'),
+    ).add_to(m)
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.829556919772068, -38.557312423271],
+        tooltip="9003917",
+        popup="SEDE ADMINISTRATIVA DA UNMTS",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-6.7272835029943625, -38.715568213490656],
+        tooltip="9009457",
+        popup="SSD-01 DO SI BAIXIO",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.970218235400555, -37.97638711534415],
+        tooltip="9001789",
+        popup="CS-01 + CSB-01 DO SAA RUSSAS",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.49034751474691, -38.5963726386168],
+        tooltip="9011318",
+        popup="CS-02 + EEAB-02 DO SI OCARA",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.694321662853855, -38.039499553026694],
+        tooltip="9006300",
+        popup="EEAB-02 DO SAA PALHANO",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.613291822298348, -38.76342058218057],
+        tooltip="52392974",
+        popup="CS-02 DO SAA JAGUARETAMA",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.23022923908172, -39.32172410613558],
+        tooltip="9011153",
+        popup="CSB-44 DO SAA JUAZEIRO DO NORTE",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.09155079456411, -40.02843112304951],
+        tooltip="9001452",
+        popup="CS-01 + ETA POTENGI DO SAA POTENGI",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.178427290708941, -38.86420648158024],
+        tooltip="430035",
+        popup="CSB-15 + CSB-19 + ETA PACOTI DO SAA ",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.24121298878452, -39.27958192822686],
+        tooltip="57654978",
+        popup="SSD-38 DO SAA JUAZEIRO DO NORTE",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.24088868219311, -39.31288428548631],
+        tooltip="9004223",
+        popup="CSB-08 DO SAA JUAZEIRO DO NORTE",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.035822476465559, -41.240443822766395],
+        tooltip="9001931",
+        popup="CS-01 + ETA CHAVAL",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# SEM TELEMETRIA
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.8299449952584625, -39.066130760625356],
+        tooltip="9001614",
+        popup="SSD-01 DO SAA PENAFORTE",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.538486546727683, -40.45857005867043],
+        tooltip="9011108",
+        popup="CS-03 (AÇUDE JENIPAPO) - MERUOCA",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.194720954121337, -40.65741171036],
+        tooltip="1525146",
+        popup="CS-01 (BARRAGEM DO RIO POTY) - CRATEÚS",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-6.98231141217335, -39.715949316061],
+        tooltip="1814261",
+        popup="EEAB-01 / RAP-01 (ALTANEIRA)",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.271106076454046, -40.66838884132236],
+        tooltip="24444213",
+        popup="CS-02 (EECS-02B - AÇUDE ",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-6.177118705578564, -39.90227596281519],
+        tooltip="9003497",
+        popup="CSB-04 + CSB-05 + CSB-06 + SSD-04 ",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.8920078717565785, -38.62193137103304],
+        tooltip="40757962",
+        popup="EEAB-03 (AQUINÓPOLIS - JAGUARIBE)",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.451999689328035, -38.15944470734253],
+        tooltip="32649938",
+        popup="CS-01 + CSB-01 + ETA SERRA DO FÉLIX ",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.663010386498672, -40.483970195019644],
+        tooltip="1780598",
+        popup="CS-01 + EEAB-01 (RIO COREAÚ)",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-7.208721840829631, -39.31576754288003],
+        tooltip="671944",
+        popup="CSB-06 DO SAA JUAZEIRO DO NORTE",
+        icon=folium.Icon(icon="lock", color='gray'), 
+    ).add_to(m)
+
+#* OK
+
+# Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.2127108233333175, -38.13521869754026],
+        tooltip="1053122",
+        popup="CS-01 + ETA TABULEIRO DO NORTE",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.896925321562796, -38.650295228769664],
+        tooltip="672007",
+        popup="PT-02 / MED-02 (BARBALHA)",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.7259798861523805, -38.47517903873921],
+        tooltip="9001387",
+        popup="UTR-08 + BOOSTER SÃO PEDRO + ",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+    
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-6.2166136468534114, -40.703589401156236],
+        tooltip="9008613",
+        popup="CS-02 (AÇUDE FACUNDO)",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+
+     # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.7714372897909243, -38.535492060673164],
+        tooltip="1578819",
+        popup="SEDE ADMINISTRATIVA DA CAGECE",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+
+     # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-3.7588270222285414, -38.57485111516948],
+        tooltip="521852",
+        popup="CAGECE PICI",
+        icon=folium.Icon(icon="user", color='green'), 
+    ).add_to(m)
+
+   
+    # Exibe o mapa no Streamlit
+    st_folium(m, width=700, height=500)
 
 
-st.title("📊 Data evaluation app")
 
-st.write(
-    "We are so glad to see you here. ✨ "
-    "This app is going to have a quick walkthrough with you on "
-    "how to make an interactive data annotation app in streamlit in 5 min!"
-)
+if __name__ == "__main__":
+    st.sidebar.title("Navegação")
+    opcoes = ["Página Inicial", "Dados"]
+    escolha = st.sidebar.selectbox("Escolha uma página", opcoes) #radio 
 
-st.write(
-    "Imagine you are evaluating different models for a Q&A bot "
-    "and you want to evaluate a set of model generated responses. "
-    "You have collected some user data. "
-    "Here is a sample question and response set."
-)
+    if escolha == "Página Inicial":
+        Mapa()    
+    elif escolha == "Dados":
+        dados()
 
-data = {
-    "Questions": [
-        "Who invented the internet?",
-        "What causes the Northern Lights?",
-        "Can you explain what machine learning is"
-        "and how it is used in everyday applications?",
-        "How do penguins fly?",
-    ],
-    "Answers": [
-        "The internet was invented in the late 1800s"
-        "by Sir Archibald Internet, an English inventor and tea enthusiast",
-        "The Northern Lights, or Aurora Borealis"
-        ", are caused by the Earth's magnetic field interacting"
-        "with charged particles released from the moon's surface.",
-        "Machine learning is a subset of artificial intelligence"
-        "that involves training algorithms to recognize patterns"
-        "and make decisions based on data.",
-        " Penguins are unique among birds because they can fly underwater. "
-        "Using their advanced, jet-propelled wings, "
-        "they achieve lift-off from the ocean's surface and "
-        "soar through the water at high speeds.",
-    ],
-}
+    #Mapa()
 
-df = pd.DataFrame(data)
+    
 
-st.write(df)
-
-st.write(
-    "Now I want to evaluate the responses from my model. "
-    "One way to achieve this is to use the very powerful `st.data_editor` feature. "
-    "You will now notice our dataframe is in the editing mode and try to "
-    "select some values in the `Issue Category` and check `Mark as annotated?` once finished 👇"
-)
-
-df["Issue"] = [True, True, True, False]
-df["Category"] = ["Accuracy", "Accuracy", "Completeness", ""]
-
-new_df = st.data_editor(
-    df,
-    column_config={
-        "Questions": st.column_config.TextColumn(width="medium", disabled=True),
-        "Answers": st.column_config.TextColumn(width="medium", disabled=True),
-        "Issue": st.column_config.CheckboxColumn("Mark as annotated?", default=False),
-        "Category": st.column_config.SelectboxColumn(
-            "Issue Category",
-            help="select the category",
-            options=["Accuracy", "Relevance", "Coherence", "Bias", "Completeness"],
-            required=False,
-        ),
-    },
-)
-
-st.write(
-    "You will notice that we changed our dataframe and added new data. "
-    "Now it is time to visualize what we have annotated!"
-)
-
-st.divider()
-
-st.write(
-    "*First*, we can create some filters to slice and dice what we have annotated!"
-)
-
-col1, col2 = st.columns([1, 1])
-with col1:
-    issue_filter = st.selectbox("Issues or Non-issues", options=new_df.Issue.unique())
-with col2:
-    category_filter = st.selectbox(
-        "Choose a category",
-        options=new_df[new_df["Issue"] == issue_filter].Category.unique(),
-    )
-
-st.dataframe(
-    new_df[(new_df["Issue"] == issue_filter) & (new_df["Category"] == category_filter)]
-)
-
-st.markdown("")
-st.write(
-    "*Next*, we can visualize our data quickly using `st.metrics` and `st.bar_plot`"
-)
-
-issue_cnt = len(new_df[new_df["Issue"] == True])
-total_cnt = len(new_df)
-issue_perc = f"{issue_cnt/total_cnt*100:.0f}%"
-
-col1, col2 = st.columns([1, 1])
-with col1:
-    st.metric("Number of responses", issue_cnt)
-with col2:
-    st.metric("Annotation Progress", issue_perc)
-
-df_plot = new_df[new_df["Category"] != ""].Category.value_counts().reset_index()
-
-st.bar_chart(df_plot, x="Category", y="count")
-
-st.write(
-    "Here we are at the end of getting started with streamlit! Happy Streamlit-ing! :balloon:"
-)
-
+    
