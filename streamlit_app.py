@@ -1,20 +1,7 @@
 import streamlit as st
 import folium
 import pandas as pd
-import io 
 
-def dados():  
-    data = pd.read_excel('valor.xlsx')
-    st.header('Download Dados', divider='red')
-    st.dataframe(data)
-    if st.button('Solicitar dados'):
-        df = data.copy()
-        excel_buffer = io.BytesIO()
-        df.to_excel(excel_buffer, index=False, header=True)
-        excel_data = excel_buffer.getvalue()
-        st.download_button("Baixe os valores de 15 dias", excel_data, file_name='Dados_UCs.xlsx')
-    else:
-         st.warning("Sem dados para baixar")
 def Mapa():   
     from streamlit_folium import st_folium  
     st.header('Mapa das Unidades', divider='red')  
@@ -278,10 +265,7 @@ if __name__ == "__main__":
 
     if escolha == "Página Inicial":
         Mapa()    
-    elif escolha == "Dados":
-        dados()
-
-    #Mapa()
+    
 
     
 
