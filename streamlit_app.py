@@ -251,8 +251,50 @@ def Mapa():
         popup="CAGECE PICI",
         icon=folium.Icon(icon="user", color='green'), 
     ).add_to(m)
+ # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-5.456966041366884, -38.46445404074873],
+        tooltip="9001036",
+        popup="ETA - JAGUARIBARA",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-6.263862988205459, -40.219185390361694],
+        tooltip="39317764",
+        popup="CAPTAÇÃO - ARNEIROZ",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.408416530778117, -37.913257123462316],
+        tooltip="9002907",
+        popup="CAPTAÇÃO - CAMPESTRE",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+     # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.207769489955328, -40.45266710145732],
+        tooltip="9011423",
+        popup="CAPTAÇÃO - HIDROLANDIA",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+ # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.528178388195777, -37.69833534646943],
+        tooltip="9006319",
+        popup="SSD - ARACATI ",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
+    # Adiciona marcadores ao mapa
+    folium.Marker(
+        location=[-4.967097236685448, -39.01614582096823],
+        tooltip="34252226",
+        popup="SSD - ARACATI ",
+        icon=folium.Icon(icon="fire", color='red'), 
+    ).add_to(m)
 
-   
+      
     # Exibe o mapa no Streamlit
     st_folium(m, width=700, height=500)
 
